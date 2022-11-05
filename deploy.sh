@@ -50,9 +50,9 @@ spec:
         imagePullPolicy: Always
         env:
         - name: TREND_AP_KEY
-          value: ${APPSEC_KEY}
+          value: ${TREND_AP_KEY}
         - name: TREND_AP_SECRET
-          value: ${APPSEC_SECRET}
+          value: ${TREND_AP_SECRET}
         ports:
         - containerPort: 9000
       restartPolicy: Always
