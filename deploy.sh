@@ -2,8 +2,8 @@
 
 docker login
 DOCKER_BUILDKIT=1 docker build -t java-goof .
-docker tag java-goof ${DOCKER_USERNAME}/java-goof:latest
-docker push ${DOCKER_USERNAME}/java-goof:latest
+docker tag java-goof ${DOCKER_USERNAME}/java-goof
+docker push ${DOCKER_USERNAME}/java-goof
 
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
@@ -19,7 +19,7 @@ spec:
   ports:
   - port: 8080
     protocol: TCP
-    targetPort: 9000
+    targetPort: 8080
   selector:
     app: java-goof
 ---
@@ -54,6 +54,6 @@ spec:
         - name: TREND_AP_SECRET
           value: ${TREND_AP_SECRET}
         ports:
-        - containerPort: 9000
+        - containerPort: 8080
       restartPolicy: Always
 EOF
